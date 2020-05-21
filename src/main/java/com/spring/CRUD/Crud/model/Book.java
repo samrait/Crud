@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "books1")
+@Table(name = "books")
 public class Book implements Serializable{
 	/**
 	 * 
@@ -55,4 +55,5 @@ public String getIsbn() {
 public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+
 }

@@ -18,6 +18,11 @@ public class BookService {
 	@Autowired
     BookRepository bookRepository;
 	
+	public String hello() {
+		// TODO Auto-generated method stub
+		return "Shishir M.";
+	}
+	
 	public List<Book> getAllBooks() {
 		// TODO Auto-generated method stub
 		return bookRepository.findAll();
@@ -33,7 +38,7 @@ public class BookService {
 		return bookRepository.findBookByIsbn(isBn);
 	}
 
-	public List<Employee> getName() {
+	public List<Employee> getEmployeeName() {
 		// TODO Auto-generated method stub
 		List<Object[]> list = bookRepository.getName();
 		List<Employee> employee = new ArrayList<Employee>();

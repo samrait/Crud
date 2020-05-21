@@ -3,36 +3,30 @@ package com.spring.CRUD.Crud.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
-import javax.security.auth.message.AuthException;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.spring.CRUD.Crud.model.Book;
 import com.spring.CRUD.Crud.repo.BookRepository;
 import org.mockito.Mock;
-import org.mockito.InjectMocks;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 @RunWith(MockitoJUnitRunner.class)
+@DataJpaTest
 public class BookRepositoryTest {
 
 	@Mock
 	private BookRepository bookRepository;
 	
 	Book book = null;
+	Object[] emp3 = {"Shishir", new Integer(25), "QA"};
+	Object[] emp4 = {"Sam", new Integer(45), "UI"};
 	
 	@Before
 	public void initEach() {
@@ -51,7 +45,7 @@ public class BookRepositoryTest {
 		assertThat(result.getAuthor_name()).isEqualTo(book.getAuthor_name());
 	}
 	
-	@Test
+	@Test(timeout=900)
 	public void getByIsbnTest()    {
 	     
 	     when(bookRepository.findBookByIsbn(book.getIsbn())).thenReturn(book);
@@ -60,15 +54,16 @@ public class BookRepositoryTest {
 	     assertThat(result.getBook_name()).isEqualTo(book.getBook_name());
 	}
 	
-	@Test
+	@Test(timeout=20)
 	public void getNameTest() {
-		/*when(bookRepository.getName()).thenReturn(List<Object>);
+		List<Object[]> list = new ArrayList<Object[]>();
+		list.addAll(Arrays.asList(emp3, emp4));
 		
-		List<Object> result = bookRepository.getName();
-		System.out.println(result);
-		assertThat(result).isEqualTo(null);*/
+		when(bookRepository.getName()).thenReturn(list);
 		
+		List<Object[]> result = bookRepository.getName();
 		
+		assertThat(result.size()).isEqualTo(2);
 	}
 	
 }

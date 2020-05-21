@@ -11,7 +11,7 @@ import com.spring.CRUD.Crud.model.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-	@Query(value = "SELECT * FROM Books1 b WHERE b.isbn = :isbn", nativeQuery=true)
+	@Query(value = "SELECT * FROM Books b WHERE b.isbn = :isbn", nativeQuery=true)
 	public Book findBookByIsbn(@Param("isbn") String isBn);
 
 	@Query(value = "SELECT e.name, e.salary, s.sname FROM emp e INNER JOIN skill s INNER JOIN emp_skill es ON e.id=es.emp_id AND s.id=es.skill_id ORDER BY e.salary DESC LIMIT 5", nativeQuery=true)

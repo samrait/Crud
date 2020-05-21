@@ -6,6 +6,17 @@ public class Employee {
 	private String name;
 	private int salary;
 	private String sname;
+	public Employee() {
+		super();
+	}
+	
+	public Employee(String name, int salary, String sname) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.name = name;
+		this.salary = salary;
+		this.sname = sname;
+	}
 	public String getName() {
 		return name;
 	}
